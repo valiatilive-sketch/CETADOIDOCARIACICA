@@ -179,6 +179,13 @@ body[data-phase="3"] .bar .btn{background:var(--gold);color:var(--navy);text-sha
 .music .eq i:nth-child(2){animation-delay:.2s}.music .eq i:nth-child(3){animation-delay:.4s}
 @keyframes eq{0%,100%{height:4px}50%{height:13px}}
 .music.playing .eq{display:flex}
+@media (max-width:959px){
+  .music{top:max(8px,env(safe-area-inset-top));right:8px;gap:6px;padding:6px 9px 6px 8px;border-width:2px;font-size:9.5px;letter-spacing:.04em;line-height:1.15}
+  .music svg{width:15px;height:15px;flex-basis:15px}
+  .music #mTxt{display:block;max-width:7.4em;text-align:left}
+  .music .eq{height:11px;gap:1.5px}.music .eq i{width:2px}
+  @keyframes eq{0%,100%{height:3px}50%{height:11px}}
+}
 
 /* ===== fases ===== */
 [data-show]{display:none}
@@ -198,8 +205,8 @@ body:not([data-phase]) [data-show]{display:none!important}
   .strip{padding-top:44px}
   .bar{left:50%;right:auto;width:100%;max-width:1200px;transform:translateX(-50%);background:none;border:0}
   .bar.hide{transform:translate(-50%,110%)}
-  .bar-in{margin:0 0 0 auto;max-width:600px;background:var(--ember);border:4px solid var(--fire);margin-bottom:12px;margin-right:12px}
-  .music{right:20px;top:20px}
+  .bar-in{margin:0 0 0 auto;width:calc(min(100vw,1200px) - min(50vw,75vh) - 24px);max-width:600px;background:var(--ember);border:4px solid var(--fire);margin-bottom:12px;margin-right:12px}
+  .music{right:auto;left:max(16px,calc(50vw - 584px));top:16px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
 </style>
@@ -551,7 +558,10 @@ try{ if(localStorage.getItem("ctd_ok")==="1") $("cadastro").classList.add("signe
     if(btn.contains(ev.target)) return;           // o botão trata o próprio toque
     play();
   }
-  ["pointerup","click","keydown"].forEach(function(t){ document.addEventListener(t,function(e){ if(!started) firstTouch(e); },{capture:true,passive:true}); });
+  ["pointerup","touchend","click","keydown","focusin","input","change","submit"].forEach(function(t){ document.addEventListener(t,function(e){ if(!started) firstTouch(e); },{capture:true,passive:true}); });
+  // rolagem não conta como "toque" para o navegador, mas tentamos mesmo assim: se ele liberar, toca; se não, tenta de novo no próximo gesto
+  var lastTry=0;
+  ["scroll","wheel","touchmove"].forEach(function(t){ window.addEventListener(t,function(e){ var n=Date.now(); if(started||dead||n-lastTry<1500) return; lastTry=n; play(); },{passive:true}); });
   btn.addEventListener("click",function(){
     if(dead) return;
     if(!started){ play(); return; }
