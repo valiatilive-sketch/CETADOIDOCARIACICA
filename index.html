@@ -414,8 +414,8 @@ body:not([data-phase]) [data-show]{display:none!important}
    ===================================================================== */
 var CONFIG = {
 
-  REG_END    : "2026-11-30T12:00:00-03:00",   // fim dos cadastros (formulário some)
-  SALES_OPEN : "2026-11-30T19:00:00-03:00",   // abertura das vendas (vira "Garanta seu ingresso")
+  REG_END    : "2026-11-06T12:00:00-03:00",   // fim dos cadastros (formulário some)
+  SALES_OPEN : "2026-11-06T19:00:00-03:00",   // abertura das vendas (vira "Garanta seu ingresso")
 
   TICKET_URL : "",                          // ← link da ticketeira (https://...)
   PIXEL_ID   : "",                          // ← ID do Pixel da Meta (só números)
@@ -482,7 +482,7 @@ function tick(){
     var s=Math.max(0,Math.floor((T_OPEN-n)/1000));
     var d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), x=s%60;
     $("cD").textContent=pad(d); $("cH").textContent=pad(h); $("cM").textContent=pad(m); $("cS").textContent=pad(x);
-    $("miniClock").textContent=(d>0?d+"d ":"")+pad(h)+":"+pad(m)+":"+pad(x);
+    $("miniClock").textContent=(d>0?d+"D ":"")+pad(h)+":"+pad(m)+":"+pad(x);
   }
 }
 function applyPhase(){
