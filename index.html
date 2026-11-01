@@ -418,7 +418,7 @@ var CONFIG = {
   SALES_OPEN : "2026-11-06T12:00:00-03:00",   // abertura das vendas (vira "Garanta seu ingresso")
 
   TICKET_URL : "",                          // ← link da ticketeira (https://...)
-  PIXEL_ID   : "",                          // ← ID do Pixel da Meta (só números)
+  PIXEL_ID   : "1680005726875123",                          // ← ID do Pixel da Meta (só números)
 
   FOOTER_LABEL: "Quero me cadastrar",       // texto do botão do rodapé (fase 1)
   MUSIC_SRC  : "musica.mp3",
@@ -568,7 +568,7 @@ function validate(){
 var sending=false;
 $("f").addEventListener("submit",function(ev){
   ev.preventDefault(); if(sending) return;
-  track("custom","CliqueCadastro",{content_name:"Fazer meu cadastro agora"});   // clique no botão
+  if(!window.__icSent){ window.__icSent=true; track("std","InitiateCheckout",{content_name:"Cadastro - Fazer meu cadastro agora"}); }   // clique no botão de cadastro (1x por visita)
   $("formErr").style.display="none";
   var v=validate();
   if(!v.ok){ if(v.first){ v.first.focus({preventScroll:true}); v.first.scrollIntoView({block:"center",behavior:"smooth"}); } return; }
