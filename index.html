@@ -523,6 +523,14 @@ document.addEventListener("click",function(ev){
   setTimeout(function(){ location.href=CONFIG.TICKET_URL; },220);   // tempo do pixel disparar antes de sair
 });
 
+/* ---------- Botão do rodapé "Quero me cadastrar" (fase 1) -> Lead ---------- */
+var leadClickSent=false;
+$("barBtn").addEventListener("click",function(){
+  if(phase!==1||leadClickSent) return;
+  leadClickSent=true;
+  track("std","Lead",{content_name:"Clique em Quero me cadastrar"});
+});
+
 /* ---------- Formulário ---------- */
 var UFS="AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
 $("uf").innerHTML=UFS.map(function(u){return '<option value="'+u+'"'+(u==="ES"?" selected":"")+'>'+u+'</option>'}).join("");
@@ -568,7 +576,6 @@ function validate(){
 var sending=false;
 $("f").addEventListener("submit",function(ev){
   ev.preventDefault(); if(sending) return;
-  if(!window.__icSent){ window.__icSent=true; track("std","InitiateCheckout",{content_name:"Cadastro - Fazer meu cadastro agora"}); }   // clique no botão de cadastro (1x por visita)
   $("formErr").style.display="none";
   var v=validate();
   if(!v.ok){ if(v.first){ v.first.focus({preventScroll:true}); v.first.scrollIntoView({block:"center",behavior:"smooth"}); } return; }
