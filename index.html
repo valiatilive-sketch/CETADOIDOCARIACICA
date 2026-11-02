@@ -418,7 +418,7 @@ var CONFIG = {
   SALES_OPEN : "2026-11-06T12:00:00-03:00",   // abertura das vendas (vira "Garanta seu ingresso")
 
   TICKET_URL : "",                          // ← link da ticketeira (https://...)
-  PIXEL_ID   : "1680005726875123",                          // ← ID do Pixel da Meta (só números)
+  PIXEL_IDS  : ["1680005726875123", "953383226632351"],    // ← IDs dos Pixels da Meta (só números). Todos recebem os mesmos eventos. Vazio = ignorado.
 
   FOOTER_LABEL: "Quero me cadastrar",       // texto do botão do rodapé (fase 1)
   MUSIC_SRC  : "musica.mp3",
@@ -434,9 +434,10 @@ var TZ="America/Sao_Paulo";
 
 /* ---------- Meta Pixel ---------- */
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-if(CONFIG.PIXEL_ID){ fbq('init',CONFIG.PIXEL_ID); fbq('track','PageView'); }
+var PIXELS=(CONFIG.PIXEL_IDS||[]).map(function(i){return String(i||'').replace(/\D/g,'')}).filter(Boolean);
+if(PIXELS.length){ PIXELS.forEach(function(id){ fbq('init',id); }); fbq('track','PageView'); }   // 'track' vale para todos os pixels iniciados
 function track(kind,name,data){
-  if(!CONFIG.PIXEL_ID){ if(window.console)console.info("[pixel pendente] "+name,data||""); return; }
+  if(!PIXELS.length){ if(window.console)console.info("[pixel pendente] "+name,data||""); return; }
   try{ kind==="custom" ? fbq('trackCustom',name,data||{}) : fbq('track',name,data||{}); }catch(e){}
 }
 
