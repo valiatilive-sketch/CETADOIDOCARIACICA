@@ -193,7 +193,7 @@ label.l{display:block;font-family:var(--sans);font-weight:800;font-size:11.5px;l
 .mini{flex:0 0 auto;line-height:1;min-width:92px}
 .mini small{display:block;font-size:9.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
 .mini b{font-family:var(--anton);font-weight:400;font-size:26px;letter-spacing:.02em;font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--cream)}
-.bar .btn{flex:1;font-size:clamp(20px,5.6vw,25px);padding:13px 8px 10px;box-shadow:0 4px 0 var(--ink);border-color:var(--ink);border-radius:10px}
+.bar .btn{background:var(--gold);color:var(--green);flex:1;font-size:clamp(20px,5.6vw,25px);padding:13px 8px 10px;box-shadow:0 4px 0 var(--ink);border-color:var(--ink);border-radius:10px}
 .bar .btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--ink)}
 body[data-phase="3"] .mini{display:none}
 body[data-phase="3"] .bar .btn{background:var(--gold);color:var(--green)}
@@ -300,91 +300,12 @@ body:not([data-phase]) [data-show]{display:none!important}
 
     <div class="lineup" aria-label="Line-up">Ícaro &amp; Gilmar<i>✱</i>Panda<i>✱</i>Humberto &amp; Ronaldo</div>
 
-    <section class="count" id="countSec" data-show="1 2" aria-live="off">
-      <svg class="bur a" aria-hidden="true"><use href="#burst"/></svg>
-      <svg class="bur b" aria-hidden="true"><use href="#burst"/></svg>
-      <h1 class="hd h-count">Cronômetro regressivo até a <em>abertura das vendas</em></h1>
-      <div class="clock" role="timer">
-        <div class="cell"><b id="cD">00</b><span>dias</span></div>
-        <div class="cell"><b id="cH">00</b><span>horas</span></div>
-        <div class="cell"><b id="cM">00</b><span>min</span></div>
-        <div class="cell"><b id="cS">00</b><span>seg</span></div>
-      </div>
-      <p class="when">Vendas abrem em <strong id="openLabel">--</strong> (horário de Brasília)</p>
-    </section>
-
-    <!-- FASE 1: formulário -->
-    <section class="panel" id="cadastro" data-show="1">
-      <div class="checker" aria-hidden="true"></div>
-      <h2 class="hd h-panel">Cadastre-se</h2>
-      <p class="sub-panel">e garanta acesso a benefícios exclusivos</p>
-
-      <form id="f" novalidate autocomplete="on">
-        <div class="field" data-f="nome">
-          <label class="l" for="nome">Nome</label>
-          <input class="in" id="nome" name="nome" type="text" autocomplete="name" placeholder="Seu nome completo" maxlength="80">
-          <span class="err">Digite seu nome e sobrenome.</span>
-        </div>
-        <div class="field" data-f="email">
-          <label class="l" for="email">E-mail</label>
-          <input class="in" id="email" name="email" type="email" inputmode="email" autocomplete="email" autocapitalize="none" placeholder="seuemail@exemplo.com" maxlength="100">
-          <span class="err">Digite um e-mail válido.</span>
-        </div>
-        <div class="field" data-f="zap">
-          <label class="l" for="zap">WhatsApp</label>
-          <div class="phone">
-            <span class="cc">+55</span>
-            <input class="in" id="zap" name="zap" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="(27) 99999-9999" maxlength="15">
-          </div>
-          <span class="err" id="zapErr">Digite o WhatsApp com DDD.</span>
-        </div>
-        <div class="row2">
-          <div class="field" data-f="cidade">
-            <label class="l" for="cidade">Cidade</label>
-            <input class="in" id="cidade" name="cidade" type="text" autocomplete="address-level2" placeholder="Sua cidade" maxlength="60">
-            <span class="err">Digite sua cidade.</span>
-          </div>
-          <div class="field" data-f="uf">
-            <label class="l" for="uf">Estado</label>
-            <select class="in sel" id="uf" name="uf" autocomplete="address-level1"></select>
-            <span class="err">UF.</span>
-          </div>
-        </div>
-        <input class="hp" type="text" name="site" id="site" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-        <label class="accept" id="acceptL">
-          <input type="checkbox" id="aceite">
-          <span class="box"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></span>
-          <span>Aceito receber informações sobre o evento por e-mail e WhatsApp.</span>
-        </label>
-
-        <div class="formerr" id="formErr" role="alert"></div>
-        <button class="btn" id="submit" type="submit">Fazer meu cadastro agora</button>
-        <p class="fine">Seus dados são usados só para avisar sobre o Cê Tá Doido.</p>
-      </form>
-
-      <div class="ok" id="ok" role="status">
-        <div class="tick"><svg viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></svg></div>
-        <h3>Cadastro feito!</h3>
-        <p>Você já está na lista. Fique de olho no seu <b>WhatsApp</b> e no seu <b>e-mail</b>: os benefícios exclusivos e o aviso da abertura das vendas chegam por lá.</p>
-      </div>
-    </section>
-
-    <!-- FASE 2: cadastros encerrados -->
-    <section class="panel" id="encerrado" data-show="2">
-      <div class="checker" aria-hidden="true"></div>
-      <div class="closed">
-        <h3>Cadastros encerrados.</h3>
-        <p>Aguarde! As vendas abrem hoje às <b id="openHour">--</b>, aqui mesmo nesta página.</p>
-      </div>
-    </section>
-
     <!-- FASE 3: vendas abertas -->
-    <section class="panel sale" id="vendas" data-show="3">
+    <section class="panel sale" id="vendas">
       <div class="checker" aria-hidden="true"></div>
       <h2 class="hd h-panel">Vendas abertas!</h2>
       <p>O Cê Tá Doido te espera.</p>
-      <a class="btn big" id="buyMain" href="#" data-buy>Garanta seu ingresso</a>
+      <a class="btn big" id="buyMain" href="https://www.vaideingresso.com.br/ce-ta-doido-cariacica?cupom=LANDPAGE" data-buy>Garanta seu ingresso</a>
     </section>
 
     <section class="real" aria-label="Realização">
@@ -401,8 +322,7 @@ body:not([data-phase]) [data-show]{display:none!important}
 
 <div class="bar" id="bar">
   <div class="bar-in">
-    <div class="mini" aria-hidden="true"><small>Vendas em</small><b id="miniClock">--:--:--</b></div>
-    <a class="btn" id="barBtn" href="#cadastro">Quero me cadastrar</a>
+    <a class="btn" id="barBtn" href="https://www.vaideingresso.com.br/ce-ta-doido-cariacica?cupom=LANDPAGE" data-buy>Garanta seu ingresso</a>
   </div>
 </div>
 <div class="toast" id="toast" role="status"></div>
@@ -414,23 +334,17 @@ body:not([data-phase]) [data-show]{display:none!important}
    ===================================================================== */
 var CONFIG = {
 
-  REG_END    : "2026-11-06T08:00:00-03:00",   // fim dos cadastros (formulário some)
-  SALES_OPEN : "2026-11-06T12:00:00-03:00",   // abertura das vendas (vira "Garanta seu ingresso")
 
-  TICKET_URL : "",                          // ← link da ticketeira (https://...)
+  TICKET_URL : "https://www.vaideingresso.com.br/ce-ta-doido-cariacica?cupom=LANDPAGE",                          // ← link da ticketeira (https://...)
   PIXEL_IDS  : ["1680005726875123", "953383226632351"],    // ← IDs dos Pixels da Meta (só números). Todos recebem os mesmos eventos. Vazio = ignorado.
 
-  FOOTER_LABEL: "Quero me cadastrar",       // texto do botão do rodapé (fase 1)
   MUSIC_SRC  : "musica.mp3",
 
-  FORM_ACTION: "https://docs.google.com/forms/d/e/1FAIpQLSc0lF2IIrIbXMQN_KOVb7iXz-AyyfY1mRy6wLnmsNjmMiVXiw/formResponse",
-  ENTRY: { nome:"entry.518439981", email:"entry.647361957", whatsapp:"entry.265434542", cidadeEstado:"entry.1400012842" }
 };
 
 (function(){
 "use strict";
 var $=function(id){return document.getElementById(id)};
-var TZ="America/Sao_Paulo";
 
 /* ---------- Meta Pixel ---------- */
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -441,78 +355,13 @@ function track(kind,name,data){
   try{ kind==="custom" ? fbq('trackCustom',name,data||{}) : fbq('track',name,data||{}); }catch(e){}
 }
 
-/* ---------- Hora do servidor ---------- */
-var base={server:Date.now(),perf:performance.now(),synced:false};
-var sim=(new URLSearchParams(location.search).get("agora")||"");   // só para testes: ?agora=2026-11-05T11:59:50-03:00
-function nowMs(){ return base.server+(performance.now()-base.perf); }
-function syncServer(){
-  if(sim){ var t=Date.parse(sim); if(!isNaN(t)){ base={server:t,perf:performance.now(),synced:true}; return Promise.resolve(); } }
-  var best=null,i=0;
-  function one(){
-    var t0=performance.now(), w0=Date.now();
-    return fetch(location.pathname+"?_="+w0+i,{method:"HEAD",cache:"no-store"}).then(function(r){
-      var d=r.headers.get("date"); var t1=performance.now();
-      if(!d) return;
-      var srv=Date.parse(d); if(isNaN(srv)) return;
-      var mid=w0+(t1-t0)/2;               // Date tem resolução de 1s: srv <= verdadeiro < srv+1s
-      var lower=srv-mid;                   // limite inferior do deslocamento
-      if(best===null||lower>best) best=lower;
-    }).catch(function(){});
-  }
-  var p=Promise.resolve();
-  for(i=0;i<6;i++){ p=p.then(one).then(function(){return new Promise(function(r){setTimeout(r,170)})}); }
-  return p.then(function(){
-    if(best!==null){ var off=best+500; base={server:Date.now()+off,perf:performance.now(),synced:true}; }
-  });
-}
-
-/* ---------- Fases ---------- */
-var T_REG=Date.parse(CONFIG.REG_END), T_OPEN=Date.parse(CONFIG.SALES_OPEN);
-function fmt(d,o){ return new Intl.DateTimeFormat("pt-BR",Object.assign({timeZone:TZ},o)).format(d); }
-function hourLabel(ms){
-  var d=new Date(ms), h=fmt(d,{hour:"2-digit",hour12:false}).replace(/\D/g,""), m=fmt(d,{minute:"2-digit"}).replace(/\D/g,"");
-  h=String(parseInt(h,10)); return (m==="0"||m==="00")? h+"h" : h+"h"+("0"+m).slice(-2);
-}
-function phaseAt(ms){ return ms>=T_OPEN?3 : ms>=T_REG?2 : 1; }
-var phase=0;
-function pad(n){return n<10?"0"+n:""+n}
-function tick(){
-  var n=nowMs(), p=phaseAt(n);
-  if(p!==phase){ phase=p; document.body.setAttribute("data-phase",p); applyPhase(); }
-  if(p<3){
-    var s=Math.max(0,Math.floor((T_OPEN-n)/1000));
-    var d=Math.floor(s/86400), h=Math.floor(s%86400/3600), m=Math.floor(s%3600/60), x=s%60;
-    $("cD").textContent=pad(d); $("cH").textContent=pad(h); $("cM").textContent=pad(m); $("cS").textContent=pad(x);
-    $("miniClock").textContent=(d>0?d+"D ":"")+pad(h)+":"+pad(m)+":"+pad(x);
-  }
-}
-function applyPhase(){
-  var b=$("barBtn");
-  if(phase===1){ b.textContent=CONFIG.FOOTER_LABEL; b.setAttribute("href","#cadastro"); b.removeAttribute("data-buy"); }
-  else if(phase===2){ b.textContent="Vendas abrem às "+hourLabel(T_OPEN); b.setAttribute("href","#countSec"); b.removeAttribute("data-buy"); }
-  else { b.textContent="Garanta seu ingresso"; b.setAttribute("href",CONFIG.TICKET_URL||"#"); b.setAttribute("data-buy",""); }
-  watchForm();
-  if(phase===3 && base.synced===false){}
-}
-
-/* ---------- Textos ---------- */
-$("openLabel").textContent=fmt(new Date(T_OPEN),{day:"2-digit",month:"2-digit"})+" às "+hourLabel(T_OPEN);
-$("openHour").textContent=hourLabel(T_OPEN);
-
-/* ---------- Barra fixa some enquanto o formulário está na tela ---------- */
-var io=null;
-function watchForm(){
+/* ---------- Barra fixa some enquanto o botão grande está na tela ---------- */
+(function(){
   var bar=$("bar");
-  if(io){io.disconnect();io=null;}
-  bar.classList.remove("hide");
-  if(phase<3 && "IntersectionObserver" in window && phase===1){
-    io=new IntersectionObserver(function(es){ bar.classList.toggle("hide",es[0].intersectionRatio>0.55); },{threshold:[0,.3,.55,.8,1]});
-    io.observe($("f"));
-  } else if(phase===3 && "IntersectionObserver" in window){
-    io=new IntersectionObserver(function(es){ bar.classList.toggle("hide",es[0].intersectionRatio>0.9); },{threshold:[0,.5,.9,1]});
-    io.observe($("buyMain"));
+  if("IntersectionObserver" in window){
+    new IntersectionObserver(function(es){ bar.classList.toggle("hide",es[0].intersectionRatio>0.9); },{threshold:[0,.5,.9,1]}).observe($("buyMain"));
   }
-}
+})();
 
 /* ---------- Compra ---------- */
 function toast(t){ var e=$("toast"); e.textContent=t; e.style.display="block"; clearTimeout(toast.t); toast.t=setTimeout(function(){e.style.display="none"},3200); }
@@ -520,87 +369,8 @@ document.addEventListener("click",function(ev){
   var a=ev.target.closest("[data-buy]"); if(!a) return;
   ev.preventDefault();
   track("std","InitiateCheckout",{content_name:"Cê Tá Doido - Cariacica 2027"});
-  if(!CONFIG.TICKET_URL){ toast("Link da ticketeira em breve."); return; }
   setTimeout(function(){ location.href=CONFIG.TICKET_URL; },220);   // tempo do pixel disparar antes de sair
 });
-
-/* ---------- Botão do rodapé "Quero me cadastrar" (fase 1) -> Lead ---------- */
-var leadClickSent=false;
-$("barBtn").addEventListener("click",function(){
-  if(phase!==1||leadClickSent) return;
-  leadClickSent=true;
-  track("std","Lead",{content_name:"Clique em Quero me cadastrar"});
-});
-
-/* ---------- Formulário ---------- */
-var UFS="AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
-$("uf").innerHTML=UFS.map(function(u){return '<option value="'+u+'"'+(u==="ES"?" selected":"")+'>'+u+'</option>'}).join("");
-var DDDS={11:1,12:1,13:1,14:1,15:1,16:1,17:1,18:1,19:1,21:1,22:1,24:1,27:1,28:1,31:1,32:1,33:1,34:1,35:1,37:1,38:1,41:1,42:1,43:1,44:1,45:1,46:1,47:1,48:1,49:1,51:1,53:1,54:1,55:1,61:1,62:1,63:1,64:1,65:1,66:1,67:1,68:1,69:1,71:1,73:1,74:1,75:1,77:1,79:1,81:1,82:1,83:1,84:1,85:1,86:1,87:1,88:1,89:1,91:1,92:1,93:1,94:1,95:1,96:1,97:1,98:1,99:1};
-function maskPhone(v){
-  var d=v.replace(/\D/g,"");
-  if(d.indexOf("55")===0 && d.length>11) d=d.slice(2);         // colou com +55
-  d=d.slice(0,11);
-  if(d.length>6) return "("+d.slice(0,2)+") "+d.slice(2,d.length>10?7:6)+"-"+d.slice(d.length>10?7:6);
-  if(d.length>2) return "("+d.slice(0,2)+") "+d.slice(2);
-  return d.length?"("+d:"";
-}
-$("zap").addEventListener("input",function(){ this.value=maskPhone(this.value); });
-function phoneCheck(v){
-  var d=v.replace(/\D/g,"");
-  if(d.length<10) return "Digite o WhatsApp com DDD: (27) 99999-9999.";
-  if(!DDDS[+d.slice(0,2)]) return "DDD inválido. Confira os 2 primeiros números.";
-  if(d.length===11 && d.charAt(2)!=="9") return "Celular com DDD começa com 9 depois do DDD.";
-  if(/^(\d)\1+$/.test(d.slice(2))) return "Número inválido.";
-  return "";
-}
-function setErr(name,msg){
-  var w=document.querySelector('[data-f="'+name+'"]'), inp=w.querySelector(".in");
-  if(msg){ w.classList.add("has-err"); inp.classList.add("bad"); var e=w.querySelector(".err"); if(e&&msg!==true)e.textContent=msg; }
-  else { w.classList.remove("has-err"); inp.classList.remove("bad"); }
-  return !msg;
-}
-["nome","email","zap","cidade"].forEach(function(id){ $(id).addEventListener("input",function(){ var w=this.closest(".field"); w.classList.remove("has-err"); this.classList.remove("bad"); }); });
-$("aceite").addEventListener("change",function(){ $("acceptL").classList.remove("bad"); });
-
-function validate(){
-  var ok=true, first=null;
-  function chk(name,msg){ var good=setErr(name,msg||false); if(!good){ok=false; if(!first)first=$(name==="zap"?"zap":name);} }
-  var nome=$("nome").value.trim();
-  chk("nome", nome.split(/\s+/).filter(Boolean).length<2||nome.length<4 ? "Digite seu nome e sobrenome." : "");
-  chk("email", /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test($("email").value.trim()) ? "" : "Digite um e-mail válido.");
-  var pe=phoneCheck($("zap").value); chk("zap",pe);
-  chk("cidade", $("cidade").value.trim().length<2 ? "Digite sua cidade." : "");
-  if(!$("aceite").checked){ ok=false; $("acceptL").classList.add("bad"); if(!first) first=$("aceite"); }
-  return {ok:ok,first:first};
-}
-
-var sending=false;
-$("f").addEventListener("submit",function(ev){
-  ev.preventDefault(); if(sending) return;
-  $("formErr").style.display="none";
-  var v=validate();
-  if(!v.ok){ if(v.first){ v.first.focus({preventScroll:true}); v.first.scrollIntoView({block:"center",behavior:"smooth"}); } return; }
-  if($("site").value){ done(); return; }                                         // robô: finge sucesso, não envia
-  sending=true; var btn=$("submit"); btn.disabled=true; btn.textContent="Enviando...";
-  var d=$("zap").value.replace(/\D/g,"");
-  var fd=new FormData();
-  fd.append(CONFIG.ENTRY.nome,$("nome").value.trim());
-  fd.append(CONFIG.ENTRY.email,$("email").value.trim().toLowerCase());
-  fd.append(CONFIG.ENTRY.whatsapp,"+55 "+$("zap").value.trim());
-  fd.append(CONFIG.ENTRY.cidadeEstado,$("cidade").value.trim()+" / "+$("uf").value);
-  fd.append("fvv","1"); fd.append("pageHistory","0");
-  fetch(CONFIG.FORM_ACTION,{method:"POST",mode:"no-cors",body:fd}).then(done).catch(function(){
-    sending=false; btn.disabled=false; btn.textContent="Fazer meu cadastro agora";
-    var e=$("formErr"); e.textContent="Não deu para enviar. Confira sua internet e toque de novo."; e.style.display="block";
-  });
-});
-function done(){
-  track("std","Lead",{content_name:"Cadastro Cê Tá Doido"});
-  $("cadastro").classList.add("signed");
-  try{ localStorage.setItem("ctd_ok","1"); }catch(e){}
-  setTimeout(function(){ $("ok").scrollIntoView({block:"center",behavior:"smooth"}); },60);
-}
-try{ if(localStorage.getItem("ctd_ok")==="1") $("cadastro").classList.add("signed"); }catch(e){}
 
 /* ---------- Música ---------- */
 (function(){
@@ -629,7 +399,7 @@ try{ if(localStorage.getItem("ctd_ok")==="1") $("cadastro").classList.add("signe
     if(btn.contains(ev.target)) return;           // o botão trata o próprio toque
     play();
   }
-  ["pointerup","touchend","click","keydown","focusin","input","change","submit"].forEach(function(t){ document.addEventListener(t,function(e){ if(!started) firstTouch(e); },{capture:true,passive:true}); });
+  ["pointerup","touchend","click","keydown"].forEach(function(t){ document.addEventListener(t,function(e){ if(!started) firstTouch(e); },{capture:true,passive:true}); });
   // rolagem não conta como "toque" para o navegador, mas tentamos mesmo assim: se ele liberar, toca; se não, tenta de novo no próximo gesto
   var lastTry=0;
   ["scroll","wheel","touchmove"].forEach(function(t){ window.addEventListener(t,function(e){ var n=Date.now(); if(started||dead||n-lastTry<1500) return; lastTry=n; play(); },{passive:true}); });
@@ -643,11 +413,6 @@ try{ if(localStorage.getItem("ctd_ok")==="1") $("cadastro").classList.add("signe
   window.__music=a;
 })();
 
-/* ---------- Start ---------- */
-tick(); setInterval(tick,250);
-syncServer().then(function(){ tick(); });
-setInterval(function(){ syncServer(); },5*60*1000);
-window.__ctd={nowMs:nowMs,phase:function(){return phase}};
 })();
 </script>
 </body>
